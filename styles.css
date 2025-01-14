@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+}
+.location-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#get-location {
+    background: #343A40FF;
+    color: white;
+}
+.location-card h1 {
+    font-size: 1.75rem;
+    color: #343a40;
+}
+.location-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #6c757d;
+}
