@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: feature.properties.ADRESSE || "Address unavailable",
                 coordinates: feature.geometry.coordinates || [],
             }));
-            loadingMessage.textContent = "";
             loadingMessage.classList.add('d-none');
             button.disabled = false;
         })
