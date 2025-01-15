@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapContainer = document.getElementById('map');
     let locations = [];
     let map;
+    let currentMarker;
 
     fetch(apiUrl)
         .then(response => {
@@ -58,6 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mapContainer.classList.remove('d-none');
         initializeMap(lat, lng);
-        L.marker([lat, lng]).addTo(map).bindPopup(`<strong>${randomLocation.title}</strong><br>${randomLocation.address}`).openPopup();
+
+        if (currentMarker) {
+            map.removeLayer(currentMarker);
+        }
+
+        currentMarker = L.marker([lat, lng]).addTo(map)
+            .bindPopup(`<strong>${randomLocation.title}</strong><br>${randomLocation.address}`)
+            .openPopup();
     });
 });
