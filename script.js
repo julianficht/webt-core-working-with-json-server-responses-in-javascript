@@ -1,11 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TRAUMHOCHZEITOGD&srsName=EPSG:4326&outputFormat=json';
+
     const button = document.getElementById('get-location');
     const display = document.getElementById('location-display');
     const mapContainer = document.getElementById('map');
+    const loadingMessage = document.getElementById('loading-message');
+
     let locations = [];
     let map;
     let currentMarker;
+
+    loadingMessage.textContent = "Daten werden geladen, bitte warten...";
+    loadingMessage.classList.remove('d-none');
+    button.disabled = true;
 
     fetch(apiUrl)
         .then(response => {
@@ -20,8 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 address: feature.properties.ADRESSE || "Address unavailable",
                 coordinates: feature.geometry.coordinates || [],
             }));
+            loadingMessage.textContent = "";
+            loadingMessage.classList.add('d-none');
+            button.disabled = false;
         })
         .catch(error => {
+            loadingMessage.textContent = "Fehler beim Laden der Daten.";
             alert(`Error: ${error.message}`);
         });
 
